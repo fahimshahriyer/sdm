@@ -1,6 +1,7 @@
 <?php
 
 use App\Teacher;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class TeachersTableSeeder extends Seeder
@@ -20,7 +21,8 @@ class TeachersTableSeeder extends Seeder
 
            Teacher::create([
                 'name' => $faker->name,
-
+                'dept_id' => $faker->numberBetween(1,3),
+                'mobile' => $faker->phoneNumber
             ]);
         }
     }

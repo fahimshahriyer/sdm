@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Batch;
 use App\Department;
+use App\Http\Requests\StoreStudentRequest;
 use App\Student;
 use Illuminate\Http\Request;
 
@@ -48,9 +49,20 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        //
+        $student = Student::create([
+            'name' => $request->name,
+            'roll' => $request->roll,
+            'registration_no' => $request->registration_no,
+            'birth_date' => $request->birth_date,
+            'department_id' => $request->department,
+            'batch_id' => $request->batch,
+            'mobile_no' => $request->mobile,
+            'address' => $request->address
+        ]);
+
+        return redirect(route('student.show', $student->id));
     }
 
     /**

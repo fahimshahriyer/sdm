@@ -7,22 +7,23 @@
             <h3 class="panel-title">Create a new Batch</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('batch.create') }}">
+            @include('errors.common');
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/batch') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="name" class="col-md-4 control-label">Student Name</label>
+                    <label for="name" class="col-md-4 control-label">Batch Name</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="roll" class="col-md-4 control-label">Roll</label>
+                    <label for="roll" class="col-md-4 control-label">Starting Date</label>
 
                     <div class="col-md-6">
-                        <input id="starting_date" type="date" class="form-control" name="starting_date" value="{{ old('starting_date') }}" required>
+                        <input id="starting_date" type="date" class="form-control" name="starting_date" value="{{ old('starting_date') }}">
                     </div>
                 </div>
 

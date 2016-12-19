@@ -7,7 +7,8 @@
             <h3 class="panel-title">Create a new Student</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form" method="POST" action="{{ route('student.create') }}">
+            @include('errors.common')
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('admin/student') }}">
                 {{ csrf_field() }}
 
                 <div class="form-group">
@@ -48,9 +49,9 @@
                     <div class="col-md-6">
                         <select name="department" id="department" class="form-control" required>
                             <option>Please Select</option>
-                            <option value="">CSE</option>
-                            <option value="">EEE</option>
-                            <option value="">ETE</option>
+                            @foreach($departments as $department)
+                                <option value="{{ $department->id }}">{{ $department->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -60,9 +61,10 @@
 
                     <div class="col-md-6">
                         <select name="batch" id="batch" class="form-control" required>
-                            <option value=""></option>
-                            <option value=""></option>
-                            <option value=""></option>
+                            <option>Please Select</option>
+                            @foreach($batches as $batch)
+                                <option value="{{ $batch->id }}">{{ $batch->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -70,18 +72,18 @@
                 <h5 class="text-center">Contact Information</h5>
                 <br>
                 <div class="form-group">
-                    <label for="name" class="col-md-4 control-label">Mobile No</label>
+                    <label for="mobile" class="col-md-4 control-label">Mobile No</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                        <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="name" class="col-md-4 control-label">Address</label>
+                    <label for="address" class="col-md-4 control-label">Address</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
+                        <input id="address" type="text" class="form-control" name="address" value="{{ old('address') }}" required>
                     </div>
                 </div>
 

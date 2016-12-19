@@ -47,7 +47,7 @@
 
         </div>
         <div class="text-center">
-            {{ $batchs->render() }}
+            {{ $batches->render() }}
         </div>
     </div>
 

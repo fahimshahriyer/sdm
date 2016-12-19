@@ -22,4 +22,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('adminDashboard');
 
     Route::resource('student','StudentController');
+    Route::resource('teacher','TeacherController');
+    Route::resource('batch','BatchController');
+    Route::resource('department','DepartmentController');
+
+
 });

@@ -17,7 +17,7 @@ class CreateTeachersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('dept_id');
-            $table->integer('mobile');
+            $table->string('mobile');
             $table->timestamps();
         });
     }

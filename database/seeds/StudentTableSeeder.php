@@ -16,7 +16,7 @@ class StudentTableSeeder extends Seeder
 
         DB::table('students')->truncate();
 
-        foreach (range(1,100) as $i){
+        foreach (range(1,50) as $i){
 
             Student::create([
                 'name' => $faker->name,
