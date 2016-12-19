@@ -1,4 +1,5 @@
 const elixir = require('laravel-elixir');
+process.env.DISABLE_NOTIFIER = elixir.config.production;
 
 require('laravel-elixir-vue-2');
 
@@ -19,7 +20,8 @@ elixir((mix) => {
 
     mix.browserSync(
     {
-    	proxy : 'sdm.dev'
+    	proxy : 'sdm.dev',
+        notify: false
     },
     [
 		'app/**/*',
