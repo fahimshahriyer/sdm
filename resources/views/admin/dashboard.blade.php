@@ -35,5 +35,13 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Total Course</div>
+                <div class="panel-body">
+                    <h1>{{ $courses }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

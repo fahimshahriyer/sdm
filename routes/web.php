@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::resource('teacher','TeacherController');
     Route::resource('batch','BatchController');
     Route::resource('department','DepartmentController');
-
+    Route::resource('course','CourseController');
+    Route::resource('exam','ExamController');
 
 });

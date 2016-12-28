@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ ++$index }}</td>
                         <td>{{ $batch->name }}</td>
-                        <td>{{ $batch->starting_date }}</td>
+                        <td>{{ $batch->starting_date->toFormattedDateString() }}</td>
                         <td>
                             <!-- Split button -->
                             <div class="btn-group">

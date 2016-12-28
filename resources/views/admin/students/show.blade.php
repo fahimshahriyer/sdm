@@ -15,7 +15,7 @@
                     <p><strong>Department: </strong>{{ $student->department_id }}</p>
                     <p><strong>Batch: </strong>{{ $student->batch_id }}</p>
                     <p><strong>Registration No: </strong>{{ $student->registration_no }}</p>
-                    <p><strong>Birth Date: </strong>{{ $student->birth_date }}</p>
+                    <p><strong>Birth Date: </strong>{{ $student->birth_date->toFormattedDateString() }}</p>
 
                     <h3>Contact Details: </h3>
                     <br>

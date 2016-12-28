@@ -17,6 +17,7 @@ class CreateExamsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('marks');
+            $table->boolean('is_active')->default(true);
             $table->integer('course_id');
             $table->timestamps();
         });

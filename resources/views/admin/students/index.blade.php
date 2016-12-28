@@ -30,7 +30,7 @@
                             <td>{{ $student->roll }}</td>
                             <td>{{ $student->registration_no }}</td>
                             <td>{{ $student->batch_id }}</td>
-                            <td>{{ $student->department_id }}</td>
+                            <td>{{ $student->department->name }}</td>
                             <td>
                                 <!-- Split button -->
                                 <div class="btn-group">

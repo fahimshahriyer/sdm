@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Batch;
-use App\Http\Requests\StoreBatchRequest;
+use App\Course;
+use App\Exam;
+use App\Http\Requests\StoreExamRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class BatchController extends Controller
+class ExamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +19,10 @@ class BatchController extends Controller
      */
     public function index()
     {
-        $batches = Batch::orderBy('name','asc')->paginate(15);
+        $exams = Exam::orderBy('created_at','asc')->paginate(15);
 
-        return view('admin.batches.index', [
-            'batches' => $batches
+        return view('admin.exams.index',[
+            'exams' => $exams
         ]);
     }
 
@@ -32,7 +33,11 @@ class BatchController extends Controller
      */
     public function create()
     {
-        return view('admin.batches.create');
+        $courses = Course::all();
+
+        return view('admin.exams.create',[
+            'courses' => $courses
+        ]);
     }
 
     /**
@@ -41,14 +46,16 @@ class BatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBatchRequest $request)
+    public function store(StoreExamRequest $request)
     {
-        $batch = Batch::create([
+        $exam = Exam::create([
             'name' => $request->name,
-            'starting_date' => $request->starting_date
+            'marks' => $request->marks,
+            'is_active' => $request->active,
+            'course_id' => $request->course_id
         ]);
 
-        return redirect(route('batch.show', $batch->id));
+        return redirect(route('exam.show', $exam->id));
     }
 
     /**
@@ -59,10 +66,9 @@ class BatchController extends Controller
      */
     public function show($id)
     {
-        $batch = Batch::findOrFail($id);
-
-        return view('admin.batches.show', [
-            'batch' => $batch
+        $exam = Exam::findOrFail($id);
+        return view('admin.exams.show', [
+            'exam' => $exam
         ]);
     }
 

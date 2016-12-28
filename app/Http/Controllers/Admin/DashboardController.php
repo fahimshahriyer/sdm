@@ -17,12 +17,14 @@ class DashboardController extends Controller
         $teachers = DB::table('teachers')->count();
         $departments = DB::table('departments')->count();
         $batches = DB::table('batches')->count();
+        $courses = DB::table('courses')->count();
 
         return view('admin.dashboard',[
             'students' => $students,
             'teachers' => $teachers,
             'departments' => $departments,
             'batches' => $batches,
+            'courses' => $courses
         ]);
     }
 }

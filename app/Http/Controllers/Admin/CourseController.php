@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Batch;
-use App\Http\Requests\StoreBatchRequest;
+use App\Course;
+use App\Department;
+use App\Http\Requests\StoreCourseRequest;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class BatchController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +19,10 @@ class BatchController extends Controller
      */
     public function index()
     {
-        $batches = Batch::orderBy('name','asc')->paginate(15);
+        $courses = Course::orderBy('course_code','asc')->paginate(15);
 
-        return view('admin.batches.index', [
-            'batches' => $batches
+        return view('admin.courses.index', [
+            'courses' => $courses
         ]);
     }
 
@@ -32,7 +33,10 @@ class BatchController extends Controller
      */
     public function create()
     {
-        return view('admin.batches.create');
+        $departments = Department::all();
+        return view('admin.courses.create',[
+            'departments' => $departments
+        ]);
     }
 
     /**
@@ -41,14 +45,16 @@ class BatchController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBatchRequest $request)
+    public function store(StoreCourseRequest $request)
     {
-        $batch = Batch::create([
+        $course = Course::create([
+            'course_code' => $request->course_code,
             'name' => $request->name,
-            'starting_date' => $request->starting_date
+            'department_id' => $request->department_id,
+            'credit' => $request->credit
         ]);
 
-        return redirect(route('batch.show', $batch->id));
+        return redirect(route('course.show',$course->id));
     }
 
     /**
@@ -59,10 +65,10 @@ class BatchController extends Controller
      */
     public function show($id)
     {
-        $batch = Batch::findOrFail($id);
+        $course = Course::findOrFail($id);
 
-        return view('admin.batches.show', [
-            'batch' => $batch
+        return view('admin.courses.show',[
+           'course' => $course
         ]);
     }
 
