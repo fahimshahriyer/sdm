@@ -19,7 +19,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::orderBy('name','asc')->paginate(15);
+        $departments = Department::orderBy('created_at','desc')->paginate(15);
 
         return view('admin.departments.index', [
             'departments' => $departments

@@ -19,7 +19,7 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $exams = Exam::orderBy('created_at','asc')->paginate(15);
+        $exams = Exam::orderBy('created_at','desc')->paginate(15);
 
         return view('admin.exams.index',[
             'exams' => $exams

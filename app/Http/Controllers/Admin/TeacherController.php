@@ -19,7 +19,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = Teacher::orderBy('name','asc')->paginate(15);
+        $teachers = Teacher::orderBy('created_at','desc')->paginate(15);
 
         return view('admin.teachers.index',[
             'teachers' => $teachers

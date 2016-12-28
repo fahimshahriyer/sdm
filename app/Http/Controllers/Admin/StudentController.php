@@ -20,7 +20,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::orderBy('name','asc')->paginate(15);
+        $students = Student::orderBy('created_at','desc')->paginate(15);
 
         return view('admin.students.index', [
             'students' => $students
