@@ -14,8 +14,8 @@
                 <thead>
                 <tr>
                     <td>#</td>
-                    <td>Batch Name</td>
                     <td>Course Code</td>
+                    <td>Course Name</td>
                     <td>Department</td>
                     <td>Actions</td>
                 </tr>
