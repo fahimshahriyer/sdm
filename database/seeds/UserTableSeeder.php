@@ -18,18 +18,19 @@ class UserTableSeeder extends Seeder
         DB::table('users')->truncate();
 
         User::create([
-            'name' => 'Asma Akter Nabeela',
-            'email' => 'asma@nabeela.com',
-            'password' => bcrypt('secret')
-
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('secret'),
+            'type' => 'admin'
         ]);
 
-        foreach (range(1,50) as $i){
+        foreach (range(1,20) as $i){
 
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
-                'password' => bcrypt('secret')
+                'password' => bcrypt('secret'),
+                'type' => 'student'
             ]);
         }
     }

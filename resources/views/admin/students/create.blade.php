@@ -18,7 +18,13 @@
                         <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="email" class="col-md-4 control-label">Email Address(this will be your login email)</label>
 
+                    <div class="col-md-6">
+                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="roll" class="col-md-4 control-label">Roll</label>
 

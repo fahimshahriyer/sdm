@@ -6,6 +6,7 @@ use App\Batch;
 use App\Department;
 use App\Http\Requests\StoreStudentRequest;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,15 +52,22 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->roll),
+            'type' => 'student'
+        ]);
         $student = Student::create([
             'name' => $request->name,
+            'user_id' => $user->id,
             'roll' => $request->roll,
             'registration_no' => $request->registration_no,
             'birth_date' => $request->birth_date,
             'department_id' => $request->department,
             'batch_id' => $request->batch,
             'mobile_no' => $request->mobile,
-            'address' => $request->address
+            'address' => $request->address,
         ]);
 
         return redirect(route('student.show', $student->id));

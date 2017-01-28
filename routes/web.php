@@ -17,15 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
-
+Route::group(['namespace' => 'Student',],function (){
+    Route::get('/dashboard', 'HomeController@index')->name('studentDashboard');
+});
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin' , 'middleware' => ['admin','auth']], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('adminDashboard');
-
     Route::resource('student','StudentController');
     Route::resource('teacher','TeacherController');
     Route::resource('batch','BatchController');
     Route::resource('department','DepartmentController');
     Route::resource('course','CourseController');
     Route::resource('exam','ExamController');
-
 });
