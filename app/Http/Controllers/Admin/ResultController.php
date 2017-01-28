@@ -1,7 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Admin;
 
+use App\Course;
+use App\Exam;
+use App\Grade;
+use App\Http\Requests\StoreResultRequest;
+use App\Result;
 use App\Semester;
 use App\Student;
 use Illuminate\Http\Request;
@@ -18,17 +23,10 @@ class ResultController extends Controller
      */
     public function index()
     {
-        $id = \Auth::id();
-        $student = Student::where('user_id', $id)->first();
-        $semesters = Semester::all();
+        $results = Result::orderBy('created_at')->paginate(15);
 
-        $resultsBySemester = $student->results()
-                            ->get()
-                            ->groupBy('semester_id');
-
-        return view('student.results.index',[
-            'resultsBySemester' => $resultsBySemester,
-
+        return view('admin.results.index',[
+            'results' => $results
         ]);
     }
 
@@ -39,18 +37,37 @@ class ResultController extends Controller
      */
     public function create()
     {
-        //
+        $semesters = Semester::all();
+        $courses = Course::all();
+        $exams = Exam::all();
+        $grades = Grade::all();
+
+        return view('admin.results.create' , [
+            'semesters' => $semesters,
+            'courses' => $courses,
+            'exams' => $exams,
+            'grades' => $grades
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreResultRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreResultRequest $request)
     {
-        //
+        $student = Student::where('roll', $request->student_id)->first();
+
+        Result::create([
+            'student_id' => $student->id,
+            'semester_id' => $request->semester_id,
+            'exam_id' => $request->exam_id,
+            'grade_id' => $request->grade_id,
+        ]);
+
+        return redirect(route('result.index'));
     }
 
     /**

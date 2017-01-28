@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Grade extends Model
+class Semester extends Model
 {
     protected $fillable = [
-        'name' , 'gpa'
+      'name'
     ];
 }

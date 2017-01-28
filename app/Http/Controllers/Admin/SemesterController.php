@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\StoreSemesterRequest;
 use App\Semester;
-use App\Student;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class ResultController extends Controller
+class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,17 +18,9 @@ class ResultController extends Controller
      */
     public function index()
     {
-        $id = \Auth::id();
-        $student = Student::where('user_id', $id)->first();
         $semesters = Semester::all();
-
-        $resultsBySemester = $student->results()
-                            ->get()
-                            ->groupBy('semester_id');
-
-        return view('student.results.index',[
-            'resultsBySemester' => $resultsBySemester,
-
+        return view('admin.semesters.index', [
+            'semesters' => $semesters
         ]);
     }
 
@@ -39,18 +31,22 @@ class ResultController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.semesters.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreSemesterRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSemesterRequest $request)
     {
-        //
+        Semester::create([
+           'name' => $request->name
+        ]);
+
+        return redirect(route('semester.index'));
     }
 
     /**
