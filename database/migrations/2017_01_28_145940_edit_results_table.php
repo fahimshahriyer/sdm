@@ -15,7 +15,7 @@ class EditResultsTable extends Migration
     {
         Schema::table('results', function (Blueprint $table){
             $table->dropColumn('course_id');
-            $table->float('marks');
+            $table->float('marks')->nullable();
         });
     }
 
