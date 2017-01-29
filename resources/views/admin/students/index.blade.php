@@ -29,7 +29,7 @@
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->roll }}</td>
                             <td>{{ $student->registration_no }}</td>
-                            <td>{{ $student->batch_id }}</td>
+                            <td>{{ $student->batch->name }}</td>
                             <td>{{ $student->department->name }}</td>
                             <td>
                                 <!-- Split button -->

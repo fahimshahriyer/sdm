@@ -17,7 +17,9 @@ class Student extends Model
     public function department(){
         return $this->belongsTo('App\Department', 'department_id');
     }
-
+    public function batch(){
+        return $this->belongsTo('App\Batch', 'batch_id');
+    }
     public function results()
     {
         return $this->hasMany('App\Result');
