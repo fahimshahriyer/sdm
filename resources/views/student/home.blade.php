@@ -12,8 +12,8 @@
                     <h1>{{ $student->name }}</h1>
                     <br>
                     <p><strong>Roll: </strong>{{ $student->roll }}</p>
-                    <p><strong>Department: </strong>{{ $student->department_id }}</p>
-                    <p><strong>Batch: </strong>{{ $student->batch_id }}</p>
+                    <p><strong>Department: </strong>{{ $student->department->name }}</p>
+                    <p><strong>Batch: </strong>{{ $student->batch->name }}</p>
                     <p><strong>Registration No: </strong>{{ $student->registration_no }}</p>
                     <p><strong>Birth Date: </strong>{{ $student->birth_date->toFormattedDateString() }}</p>
 

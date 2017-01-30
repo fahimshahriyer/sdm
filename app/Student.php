@@ -14,10 +14,12 @@ class Student extends Model
     protected $dates = [
         'birth_date'
     ];
-    public function department(){
+    public function department()
+    {
         return $this->belongsTo('App\Department', 'department_id');
     }
-    public function batch(){
+    public function batch()
+    {
         return $this->belongsTo('App\Batch', 'batch_id');
     }
     public function results()
