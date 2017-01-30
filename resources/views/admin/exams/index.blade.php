@@ -26,7 +26,7 @@
                         <td>{{ ++$index }}</td>
                         <td>{{ $exam->name }}</td>
                         <td>{{ $exam->marks }}</td>
-                        <td>{{ $exam->course_id }}</td>
+                        <td>{{ $exam->course->name }}</td>
                         <td>{{ $exam->is_active }}</td>
                         <td>
                             <!-- Split button -->
